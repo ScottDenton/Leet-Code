@@ -103,5 +103,18 @@ end
 #   end
 # end
 
+# p my_atoi("   +42 dsaf")
 
-p my_atoi("   +42 dsaf")
+
+# *****************     IMPLEMENT strSTR() **************
+
+def str_str(haystack, needle)
+  return 0 if needle == ''
+  haystack.include?(needle) ? haystack.index(needle) : -1
+end
+
+# p str_str('hello', 'llo')
+
+
+
+#
