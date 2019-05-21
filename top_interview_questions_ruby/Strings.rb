@@ -116,5 +116,28 @@ end
 # p str_str('hello', 'llo')
 
 
+# *************       COUNT AND SAY **********************
+# 1.     1
+# 2.     11
+# 3.     21
+# 4.     1211
+# 5.     111221
+
+def count_and_say(n)
+  string = '1'
+  (n-1).times do
+    string = string.gsub(/(.)\1*/){|s|
+      "#{s.size}#{s[0]}"
+    }
+  end
+  return string
+end
+
+# steps involed
+# 1. always starts at '1'
+# 2. n-1 because you already have a starting point and dont want the result for the one after
+# 3. string.gsub works by first finding any repeated numbers with a regexp /(.)\1*/
+# then each individual section found with the regex is given the variable 's' in this case and replaced/subbed out for the size of the section(ie the count for each number) followed by the actual number
 
 #
+p count_and_say(5)
