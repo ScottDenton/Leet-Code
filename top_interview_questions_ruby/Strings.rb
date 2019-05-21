@@ -132,6 +132,7 @@ def count_and_say(n)
   end
   return string
 end
+# p count_and_say(5)
 
 # steps involed
 # 1. always starts at '1'
@@ -139,5 +140,25 @@ end
 # 3. string.gsub works by first finding any repeated numbers with a regexp /(.)\1*/
 # then each individual section found with the regex is given the variable 's' in this case and replaced/subbed out for the size of the section(ie the count for each number) followed by the actual number
 
+
+
+# ***********      LONGEST COMMON PREFIX   ******************
+
+def longest_common_prefix(strs)
+  return '' if strs.length == 0
+  prefix = ''
+  count = 0
+  while count < strs[0].length
+    if strs.all?{|string| string[count] == strs[0][count] }
+      prefix += strs[0][count]
+      count +=1
+    else
+      break
+    end
+  end
+  prefix
+end
+
+# p longest_common_prefix(["c", "c"])
+
 #
-p count_and_say(5)
