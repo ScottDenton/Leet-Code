@@ -58,8 +58,43 @@ nums.unshift(nums.splice(nums.length-k))
   return nums.flat()
 };
 
-console.log(rotate([1,2,3,4,5,6,7], 2))
+// console.log(rotate([1,2,3,4,5,6,7], 2))
 
+
+// *****     CONTAINS DUPLICATES     *****
+
+// horendous runtime only beats 8 %
+// const containsDuplicate = nums => {
+//   array = []
+//   for(let i = 0; i < nums.length; i++){
+//     if(array.includes(nums[i])){
+//       return true
+//     } else {
+//       array.push(nums[i])
+//     }
+//   };
+//   return false
+// };
+
+// improved runtime beats 70%
+// const containsDuplicate = nums => {
+//   counter = {}
+//   for(let i = 0; i < nums.length; i++){
+//     if(counter[nums[i]]){
+//       return true
+//     } else {
+//       counter[nums[i]] = 1
+//     }
+//   };
+//   return false
+// };
+
+// beats 100%
+const containsDuplicate = nums => {
+    let mySet = new Set(nums);
+    return mySet.size === nums.length ? false: true
+};
+// console.log(containsDuplicate([1,2,3,4,5,6]))
 
 
 
