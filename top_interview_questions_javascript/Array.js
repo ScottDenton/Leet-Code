@@ -89,13 +89,77 @@ nums.unshift(nums.splice(nums.length-k))
 //   return false
 // };
 
-// beats 100%
+// beats 100% ... for now
 const containsDuplicate = nums => {
     let mySet = new Set(nums);
     return mySet.size === nums.length ? false: true
 };
 // console.log(containsDuplicate([1,2,3,4,5,6]))
 
+// *****     SINGLE NUMBER     *****
+// good runtime, poor memory
+const singleNumber = nums => {
+  obj = {}
+  for(let i = 0; i < nums.length; i++){
+    obj[nums[i]] ? obj[nums[i]]++ : obj[nums[i]] = 1
+    }
+
+  for([num, count] of Object.entries(obj)){
+    if(count === 1) return num
+  }
+};
+
+// console.log(singleNumber([1,1,2,2,3]))
+
+// *****     INTERSECTION OF TWO ARRAYS     *****
+// beats 99% for runtime and 65% for memory
+const intersect = (nums1, nums2) => {
+  const hash = {}; const answer = []
+
+  nums1.forEach(num => {
+    hash[num] ? hash[num] ++ : hash[num] = 1
+  })
+
+  nums2.forEach(num => {
+    if (hash[num] && hash[num] > 0){
+      answer.push(num)
+      hash[num]--
+    }
+  })
+  return answer
+};
+
+// console.log(intersect([1,2,2,1], [2,2]))
 
 
+// *****     PLUS ONE     *****
+// beats 95% for runtime and almost all for memory(no % given)
+const plusOne = (arr, count = 1) => {
+  let pos = arr.length - count
+  if(arr[pos] !== 9){
+    arr[pos]++
+  } else {
+    arr[pos] = 0
+    if(count === arr.length){
+      arr.unshift(0)
+    }
+    count ++
+     plusOne(arr, count)
+  }
+  return arr
+}
+
+// console.log(plusOne([9,9,9]))
+
+// *****     MOVE ZEROES     *****
+const moveZeroes = (nums) => {
+  for(let i = 0; i < nums.length; i++){
+    if(nums[i] === 0){
+      nums.push( nums.splice(nums.indexOf(nums[i]),1)[0])
+    }
+  }
+  return nums
+}
+
+console.log(moveZeroes([1,2,0,2,0,8,7]))
 //
