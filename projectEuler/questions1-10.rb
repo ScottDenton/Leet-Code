@@ -215,15 +215,3 @@ end
 
 # puts is_prime?(1997)
 p sum_of_primes(2000000)
-
-# problem 11
-
-# problem 12
-
-# problem 13
-
-# problem 14
-
-# problem 15
-
-# problem 16
