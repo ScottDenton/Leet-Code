@@ -163,10 +163,35 @@ numbers = [[37107287533902102798797998220837590246510135740250],
 [20849603980134001723930671666823555245252804609722],
 [53503534226472524250874054075591789781264330331690]]
 
-puts numbers.flatten.reduce(:+).to_s[0...10]
+# puts numbers.flatten.reduce(:+).to_s[0...10]
 
 # problem 14
+  def find_sequence(start, arr = [start])
+      num = (start * 3) + 1 if start.odd?
+      num = start / 2 if start.even?
+      array = arr << num
+      if num == 1
+        return array.length
+      else
+        find_sequence(num, array)
+      end
+  end
 
+  def find_longest(max)
+    longest_count = 1
+    starting_number = 2
+    i = 2
+    while i < max
+      if find_sequence(i) > longest_count
+        longest_count = find_sequence(i)
+        starting_number = i
+      end
+      i +=1
+    end
+    starting_number
+  end
+
+  # puts find_longest(1000000)
 # problem 15
 
 # problem 16
