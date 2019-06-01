@@ -194,4 +194,66 @@ numbers = [[37107287533902102798797998220837590246510135740250],
   # puts find_longest(1000000)
 # problem 15
 
+def lattice_paths(sides)
+  # make a new array as long as sides given
+  arr = Array.new(sides){1}
+
+  1.upto(sides-1) do |column|
+    # items down very middle(diagonal) are double the item above them in the column
+    arr[column] *=2
+    (column + 1).upto(sides-1) do |n|
+      # other items are the sum of the item above and the item to the left(-1)
+      arr[n] = arr[n-1] + arr[n]
+    end
+  end
+  arr[sides-1]
+end
+
+# puts lattice_paths(20 +1)
+
 # problem 16
+def powers_digit_sum(num)
+  (2**num).to_s.split('').map{|i| i.to_i}.reduce(:+)
+end
+
+# puts powers_digit_sum(1000)
+
+# problem 17
+def number_to_words(num)
+  numbers = {1 => 'one', 2 => 'two', 3 => 'three', 4 => 'four', 5 => 'five', 6 => 'six', 7 => 'seven', 8 => 'eight', 9 => 'nine', 10 => 'ten', 11 => 'eleven', 12 => 'twelve', 13=>'thirteen', 14 => 'fourteen', 15=>'fifteen', 16 =>'sixteen', 17=>'seventeen', 18 =>'eighteen', 19 =>'nineteen', 20 => 'twenty', 30=>'thirty', 40 =>'forty', 50=>'fifty', 60=>'sixty', 70=>'seventy', 80=>'eighty', 90=>'ninety', 1000 => 'onethousand'}
+
+return numbers[num] if numbers.include?(num)
+answer =''
+  arr = num.to_s.split("").map{|i| i.to_i}
+  if arr.length > 2
+    answer =  "#{numbers[arr[0]]} hundred "
+    if numbers.include?(arr[1..2].join.to_i)
+      answer += 'and' + numbers[arr[1..2].join.to_i]
+    else
+      if arr[1..2].join != '00'
+        answer += 'and' + numbers[arr[1]*10] + ' '
+        answer += numbers[arr[2]]
+      end
+    end
+  elsif numbers.include?(num)
+    answer += numbers[num]
+  else
+    answer += numbers[arr[0]*10] + ' '
+    answer += numbers[arr[1]]
+  end
+
+  answer.gsub(' ','')
+end
+
+def number_letter_counts(max)
+  (1..max).map{|num| number_to_words(num).length}.reduce(:+)
+end
+#  p number_to_words(342)
+# p number_to_words(500)
+# p number_to_words(9)
+# p number_to_words(19)
+# p number_to_words(45)
+# p number_to_words(999)
+# p number_to_words(1000)
+
+puts number_letter_counts(1000)
