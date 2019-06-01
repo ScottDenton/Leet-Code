@@ -271,4 +271,12 @@ def sundays
   # count only the sundays that fall on the first day of the week.
   result = sundays.select{|date| date.day == 1}.count
 end
-puts sundays()
+# puts sundays()
+
+
+# question 20
+def factorial_digit_sum(num)
+  (1..num).reduce(:*).to_s.split('').map{|num| num.to_i}.reduce(:+)
+end
+
+puts factorial_digit_sum(100)
