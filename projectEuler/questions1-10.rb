@@ -147,11 +147,74 @@ def find_big_product(num)
   the_biggest_product
 end
 
-puts find_big_product(big_num)
+# puts find_big_product(big_num)
 
 # problem 9
+# Special Pythagorean triplet
+  # There exists exactly one Pythagorean triplet for which a + b + c = 1000.
+
+def find_triplet
+  # define possible values for a, b and c
+  # keep end values under 500(half total) to start to reduce calculations
+  a_values = (1..500)
+  b_values = (1..500)
+  c_values = (1..500)
+  a_final = 0
+  b_final = 0
+  c_final = 0
+  a_values.each do|a|
+    b_values.each do|b|
+      c_values.each do |c|
+        if (a + b + c == 1000) && a**2 + b**2 == c**2
+           a_final = a
+           b_final = b
+           c_final = c
+           break
+         end
+      end
+    end
+  end
+  puts "a is #{a_final}, b is #{b_final}, c is #{c_final}"
+  a_final * b_final * c_final
+end
+
+# puts find_triplet()
 
 # problem 10
+require 'prime'
+def is_prime?(num)
+  return true if num <=3 && num > 1
+  if num % 2 == 0 || num % 3 ==0
+    return false
+  else
+    (5..num/2).each do|n|
+      if num % n == 0
+        return false
+      end
+    end
+  end
+  return true
+end
+
+def sum_of_primes(num)
+  # ***** super slow way ... just dont do it
+  # (2..num).select{|n| is_prime?(n)}.reduce(:+)
+
+  # ***** about 30 sec
+  # primes = []
+  # (2..num).each do |n|
+  #   if Prime.prime?(n)
+  #     primes << n
+  #   end
+  # end
+  # primes.reduce(:+)
+
+# Quickest way by far
+   Prime.each(num).reduce(:+)
+end
+
+# puts is_prime?(1997)
+p sum_of_primes(2000000)
 
 # problem 11
 
