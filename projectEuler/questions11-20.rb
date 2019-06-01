@@ -256,4 +256,19 @@ end
 # p number_to_words(999)
 # p number_to_words(1000)
 
-puts number_letter_counts(1000)
+# puts number_letter_counts(1000)
+
+# problem 19 - skipped 18
+# every 7th day is a sunday
+require 'date'
+def sundays
+  # set start and end dates as well as date range
+  start_date = Date.new(1901,1,1)
+  end_date = Date.new(2000,12,31)
+  date_range = (start_date..end_date)
+  # select all of the sundays
+  sundays = date_range.to_a.select{|i| i.wday == 0}
+  # count only the sundays that fall on the first day of the week.
+  result = sundays.select{|date| date.day == 1}.count
+end
+puts sundays()
