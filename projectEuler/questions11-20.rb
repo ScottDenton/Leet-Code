@@ -275,6 +275,10 @@ end
 
 
 # question 20
+# find all numbers less than given num and multiply all together
+# turn result into an array
+# turn strings in array into integers
+# add all the numbers together
 def factorial_digit_sum(num)
   (1..num).reduce(:*).to_s.split('').map{|num| num.to_i}.reduce(:+)
 end
