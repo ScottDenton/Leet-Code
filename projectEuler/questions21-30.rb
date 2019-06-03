@@ -85,3 +85,21 @@ end
 # runs while start < size^2 because the largest number in the grid would be the number of items in the grid. ie 5 * 5 grid has 25 max items.
 
 # p number_spirals(1001)
+
+# QUESTION: 36
+# double base palindromes
+
+# check if a number is a palindrome
+def is_palindrome?(num)
+  binary = num.to_s(2)
+  num = num.to_s
+
+  num.reverse == num && binary == binary.reverse
+end
+# puts is_palindrome?(585)
+
+# select all numbers under given max that are palindromes and sum them
+def double_base(max)
+  (1..max).select{|num| is_palindrome?(num)}.reduce(:+)
+end
+p double_base(1000000)
