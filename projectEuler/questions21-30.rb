@@ -69,4 +69,19 @@ while b < max
   b = a + temp
 end
 
-puts i
+# puts i
+# QUESTION: 28
+def number_spirals(size)
+  # declare all starting variables
+  start = 1
+  sum = start
+  step = 2
+  while start < size**2
+    4.times { sum += start += step }
+      step +=2
+  end
+    puts sum
+end
+# runs while start < size^2 because the largest number in the grid would be the number of items in the grid. ie 5 * 5 grid has 25 max items.
+
+# p number_spirals(1001)
