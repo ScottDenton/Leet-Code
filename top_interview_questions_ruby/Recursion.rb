@@ -53,4 +53,16 @@ def get_row(row_index, triangle = [], i = 0)
   end
   get_row(row_index, triangle, i +1)
 end
-p get_row(7)
+# p get_row(7)
+
+
+
+# ********* REVERSE LINKED LIST
+def reverse_list(head, previous = nil)
+   return previous if head == nil
+
+    next_node = head.next
+    head.next = previous
+
+    reverse_list(next_node, head )
+end
