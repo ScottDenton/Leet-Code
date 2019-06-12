@@ -120,3 +120,23 @@ def is_valid_bst(root, min = -Float::INFINITY, max = Float::INFINITY)
         is_valid_bst(root.left, min, root.val) && is_valid_bst(root.right, root.val, max)
     end
 end
+
+
+# *********       SORTING AND SEARCHING     *******
+
+def first_bad_version(n)
+  return 1 if n == 1
+  min = 0
+  max = n
+  loop do
+    mid = (max-min)/2 + min
+    if is_bad_version(mid)
+       max = mid
+    else
+        min = mid
+    end
+    if min +1 >= max
+        return max
+     end
+  end
+end
