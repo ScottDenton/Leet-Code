@@ -77,3 +77,11 @@ def fib(n, cache={0=>0, 1=>1, 2=>1})
 end
 
 # Beat 100% for memory and just under 97% for speed
+
+
+#**********      CLIMB STAIRS WITH MOMOIZATION
+
+def climb_stairs(n, cache = { 1=>1, 2=>2, 3=>3})
+    return cache[n] if cache[n]
+    cache[n] = climb_stairs(n-1, cache) + climb_stairs(n-2, cache)
+end
