@@ -16,3 +16,41 @@ def swap_pairs(head)
     #at the end return the new head
     new_head
 end
+
+
+
+# *************   Pascals Triangle
+
+def generate(num_rows)
+  triangle = []
+  num_rows.times do |i|
+    triangle.push([1]) if i == 0      # if its one of the first two add the ones accordingly
+    triangle.push([1,1]) if i ==1
+
+    if i > 1                          #if its more than two push an empty array
+      triangle.push([])
+      triangle[i].push(1)             #start it with a 1
+      (1...i).each do |j|             # depending on the row number(each row length is equal to the row number)
+        triangle[i].push(triangle[i-1][j-1] + triangle[i-1][j]) # add the items above together to find its total
+      end
+    triangle[i].push(1)               # push a 1 onto the end when your done with the row.
+    end
+  end
+  triangle                            #return the triangle
+end
+
+# *********      PASCALS TRIANGLE II - recursive
+def get_row(row_index, triangle = [], i = 0)
+  return triangle[i-1]  if i == row_index +1
+  triangle.push([1]) if i == 0
+  triangle.push([1,1]) if i == 1
+  if i > 1
+    triangle[i] = [1]
+    (1...i).each do |j|
+      triangle[i].push(triangle[i-1][j-1] + triangle[i-1][j])
+    end
+    triangle[i].push(1)
+  end
+  get_row(row_index, triangle, i +1)
+end
+p get_row(7)
