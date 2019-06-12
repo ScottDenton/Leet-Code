@@ -66,3 +66,14 @@ def reverse_list(head, previous = nil)
 
     reverse_list(next_node, head )
 end
+
+
+#************   RECURSIVE FIBONACCI WITH MOMOIZATION
+
+def fib(n, cache={0=>0, 1=>1, 2=>1})
+    return cache[n] if cache[n]
+
+    cache[n] = fib(n-1, cache) + fib(n-2, cache)
+end
+
+# Beat 100% for memory and just under 97% for speed
