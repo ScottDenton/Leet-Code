@@ -68,7 +68,7 @@ def reverse_list(head, previous = nil)
 end
 
 
-#************   RECURSIVE FIBONACCI WITH MOMOIZATION
+#************   RECURSIVE FIBONACCI WITH MEMOIZATION
 
 def fib(n, cache={0=>0, 1=>1, 2=>1})
     return cache[n] if cache[n]
@@ -79,9 +79,33 @@ end
 # Beat 100% for memory and just under 97% for speed
 
 
-#**********      CLIMB STAIRS WITH MOMOIZATION
+#**********      CLIMB STAIRS WITH MEMOIZATION
 
 def climb_stairs(n, cache = { 1=>1, 2=>2, 3=>3})
     return cache[n] if cache[n]
     cache[n] = climb_stairs(n-1, cache) + climb_stairs(n-2, cache)
+end
+
+# ****    BONUS = PRINT STRING IN REVERSE RECURSIVELY
+
+def reverse(str, n = str.length-1)
+  return str if n == 0
+  return reverse(str[1..n], n-1) + str[0]
+end
+
+# puts reverse("Hello World")
+
+
+#**********  MERGE TWO SORTED LISTS
+def merge_two_lists(l1, l2)
+   return l1 if l2.nil?
+   return l2 if l1.nil?
+
+    if l1.val < l2.val
+        l1.next = merge_two_lists(l1.next, l2)
+        l1
+    else
+        l2.next = merge_two_lists(l1, l2.next)
+        l2
+    end
 end
