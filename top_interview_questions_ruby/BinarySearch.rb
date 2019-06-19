@@ -75,4 +75,81 @@ def find_index(array, target, root = build_tree(array))
   end
 end
 
-pp find_index([4,5,6,7,0,1,2], 9)
+# pp find_index([4,5,6,7,0,1,2], 9)
+
+# ************        FIND PEAK ELEMENT
+
+def find_peak_element(nums)
+   i = 0
+    while i < (nums.length) - 1
+        if nums[i] > nums[i+1]
+            return i
+        end
+        i+=1
+    end
+    return (nums.length) -1
+end
+
+# pp find_peak_element([1,2,3,1])
+
+
+# *******    FIND MINIMUM IN ROTATED SORTED ARRAY
+def find_min(nums)
+    min = 0
+    max = (nums.length) -1
+  while min < max
+      mid = ((min + max) / 2)
+      if nums[mid] > nums[max]
+          min = mid +1
+      else
+          max = mid
+      end
+  end
+    nums[max]
+end
+
+# pp find_min([2,1] )
+
+
+
+def search_range(nums, target)
+  min = 0
+  max = (nums.length) -1
+  answer = []
+  return [0,0] if nums.length ==1 and target == nums[0]
+
+  while min < max
+    mid = ((min + max) /2)
+    if nums[mid] < target
+        min = mid +1
+    elsif nums[mid] > target
+        max = mid
+    else
+      i = 1
+      until nums[mid -i] != target
+        i +=1
+      end
+      answer.push(mid - i+1)
+      j = 1
+      until nums[mid +1] != target
+        j +=1
+      end
+      answer.push(mid + j-1)
+      return answer
+    end
+  end
+  return [-1, -1]
+end
+
+# pp search_range([1], 1)
+
+# FIND THE SUM OF ALL NUMBERS WITHIN A GIVEN RANGE FOR BINARY SEARCH TREE
+def range_sum_bst(root, l, r)
+    total = 0
+    unless root.nil?
+        total += range_sum_bst(root.right, l, r) if root.right
+        total += range_sum_bst(root.left, l, r) if root.left
+        total += root.val if root.val >= l && root.val <= r
+    end
+        total
+end
