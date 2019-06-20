@@ -26,3 +26,9 @@ def max_increase_keeping_skyline(grid)
 
   total
 end
+
+# given a num, count the 1's in the nums from 0 to num, once they have been converted to binary
+# ie num = 2, range = (0..2). 0 in binary = 0, 1 in binary = 1, 2 in binary = 10. answer = [0,1,1]
+def count_bits(num)
+    (0..num).map{|i| i.to_s(2).count('1')}
+end
