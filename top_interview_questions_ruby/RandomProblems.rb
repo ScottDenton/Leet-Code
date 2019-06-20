@@ -52,3 +52,23 @@ def title_to_number(s)
 end
 
 # pp title_to_number("ZY")
+
+
+class TreeNode
+  attr_accessor :val, :left, :right
+  def initialize(val)
+    @val = val
+    @left, @right = nil, nil
+  end
+end
+
+def sorted_array_to_bst(nums)
+  return nil if nums.empty?
+  mid = (nums.length / 2)
+  node = TreeNode.new(nums[mid])
+  node.left = sorted_array_to_bst(nums[0...mid]) if mid - 1 >= 0
+  node.right = sorted_array_to_bst(nums[mid +1..-1]) if mid + 1 <= nums.length - 1
+  node
+end
+
+pp sorted_array_to_bst([-10,-3,0,5,9])
