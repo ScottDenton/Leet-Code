@@ -38,3 +38,17 @@ def roman_to_int(s)
 end
 
 # pp roman_to_int("MCMXCIV")
+
+
+def title_to_number(s)
+    alphabet = %w(0 A B C D E F G H I J K L M N O P Q R S T U V W X Y Z)
+    answer = 0
+    i = 0
+    s.chars.reverse.each do |c|   #each with index would increase speed a bit instead of a counter
+      answer += alphabet.index(c) * (26**i)
+      i+=1
+    end
+    answer
+end
+
+# pp title_to_number("ZY")
